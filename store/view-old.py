@@ -9,7 +9,9 @@ from .models import Artist, Album, Contact, Booking
 def index(request):
     # filtrer attribut available, ordonner du plus récent à ancien, 12 premiers
     albums = Album.objects.filter(available=True).order_by('-created_at')[:12]
-    return render(request, 'store/index.html', locals())
+    formated_albums = ["<li>{}</li>".format(album.title) for album in albums]
+    message = """<ul>{}</ul>""".format("/n".join(formated_albums))
+    return HttpResponse(message)
 
 def listing(request):
     albums = Album.objects.filter(available=True)
