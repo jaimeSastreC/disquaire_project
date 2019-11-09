@@ -16,7 +16,7 @@ def index(request):
 def listing(request):
     albums = Album.objects.filter(available=True)
     formated_albums = ["<li>{}</li>".format(album.title) for album in albums]
-    message = """<ul>{}</ul>""".format("/n".join(formated_albums))
+    message = """<ul>{}</ul>""".format("".join(formated_albums))
     return HttpResponse(message)
 
 def detail(request, album_id):

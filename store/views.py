@@ -14,16 +14,24 @@ def index(request):
 def listing(request):
     albums = Album.objects.filter(available=True)
     formated_albums = ["<li>{}</li>".format(album.title) for album in albums]
-    message = """<ul>{}</ul>""".format("/n".join(formated_albums))
-    return HttpResponse(message)
+    message = """<ul>{}</ul>""".format("".join(formated_albums))
+    context = {
+        'albums': albums,
+    }
+    return render(request, 'store/listing.html', context)
 
 def detail(request, album_id):
     """ http://127.0.0.1:8000/store/1/
     """
     album = get_object_or_404(Album, id=album_id)
-    artistes = " ".join([artiste.name for artiste in album.artists.all()])
-    message = "le nom de l'album est {0}.<br/> Il a été composé par {1}".format(album.title, artistes)
-    return HttpResponse(message)
+    artist_name = " ".join([artiste.name for artiste in album.artists.all()])
+    context = {
+        'album_title': album.title,
+        'artist_name': artist_name,
+        'album_id': album.id,
+        'thumbnail': album.picture,
+    }
+    return render(request, 'store/detail.html', context)
 
 def search(request):
     """ Requête Auteur
@@ -51,10 +59,14 @@ def search(request):
                 </ul>
                 """.format("</li><li>".join(albums))
 
+    title = "Résultat pour la recherche {}".format(query)
+    context = {
+        'albums': albums,
+        'title': title,
+    }
 
 
-
-    return HttpResponse(message)
+    return render(request, 'store/search.html', context,)
 
 
 
