@@ -17,18 +17,25 @@ Including another URLconf
 from django.urls import path
 from django.contrib import admin
 from django.conf import settings
+from django.conf.urls.static import static
 from django.conf.urls import include, url
+
 from store import views
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('store/', include('store.urls')),
+    #ajout de namespace!
+    url(r'^store/', include('store.urls')),
     url(r'^$', views.index)
 ]
 
+#debug toolbar
 if settings.DEBUG:
     import debug_toolbar
     urlpatterns = [
         path('__debug__', include(debug_toolbar.urls)),
     ] + urlpatterns
+
+# pour visualiser images
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

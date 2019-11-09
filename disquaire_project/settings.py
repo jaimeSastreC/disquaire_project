@@ -25,7 +25,13 @@ SECRET_KEY = '7&!on4804jchn=sk1mxda5fx_$)0p*5kx4(y@@$lck*mfyjvab'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+#Ajouté !!
+DEBUG_TEMPLATE = DEBUG
+
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+]
 
 
 # Application definition
@@ -51,7 +57,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
-
+#pour django-debug-toolbar
 INTERNAL_IPS = ['127.0.0.1']
 
 ROOT_URLCONF = 'disquaire_project.urls'
@@ -59,7 +65,10 @@ ROOT_URLCONF = 'disquaire_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            # Cette ligne ajoute le dossier templates/ à la racine du projet
+            os.path.join(BASE_DIR, 'templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -119,9 +128,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fr'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Paris'
 
 USE_I18N = True
 
@@ -134,5 +143,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+MEDIA_URL = "/media/"
+#MEDIA_ROOT = os.path.join(BASE_DIR, "static/img/")
+MEDIA_ROOT = os.path.join(BASE_DIR, 'store/static/store/')
+
+TEMPLATE_DIRS = (
+    "/home/crepes/crepes_bretonnes/templates/",
+)
 
 APPEND_SLASH = True # ajout de slash en fin d'URL

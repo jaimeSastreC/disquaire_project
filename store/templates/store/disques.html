@@ -6,18 +6,29 @@
                     <div class="col-lg-12">
                         <header>
                             <hr>
-                            <h2 class="intro-text text-center">Titre de l'album
-                                <strong>{{ album.title }}</strong>
-                            </h2>
+                            {#éjout d'espace  de nom "store" pour pouvoir utiliser plusieurs fois detail#}
+                            <a href="{% url 'store:detail' album_id=album.id %}">
+                                <h2 class="intro-text text-center">Titre de l'album
+                                    <strong>{{ album.title }}</strong>
+                                </h2>
+                            </a>
                             <hr>
                         </header>
-                        <img class="img-responsive img-border img-left" src="{% static 'store/img/intro-pic.jpg' %}" alt="">
-                        <hr class="visible-xs">
-                        <p>The boxes used in this template are nested inbetween a normal Bootstrap row and the start of your column layout. The boxes will be full-width boxes, so if you want to make them smaller then you will need to customize.</p>
-                        <p>A huge thanks to <a href="http://join.deathtothestockphoto.com/" target="_blank">Death to the Stock Photo</a> for allowing us to use the beautiful photos that make this template really come to life. When using this template, make sure your photos are decent. Also make sure that the file size on your photos is kept to a minumum to keep load times to a minimum.</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat diam quis nisl vestibulum dignissim. In hac habitasse platea dictumst. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+                        <a href="{% url 'store:detail' album_id=album.id %}">
+                            <img class="img-responsive img-border img-left" src="{% static album.picture%}" alt="" >
+                        </a>
+                            <hr class="visible-xs">
+                        <p>Sarbacane est le septième album studio de Francis Cabrel. Sorti en 1989, l'album s'est écoulé à plus de 2 000 000 d'exemplaires en France3 et a été certifié disque de diamant.
+
+                            Cet album est l'un des plus célèbres de Francis Cabrel, tant par l'importance des singles qui résonnent encore aux oreilles vingt ans plus tard (Animal, Sarbacane, C'est écrit et Tout le monde y pense) que pour les thèmes des chansons, notables pour quelques-unes d'entre elles : il rend hommage à sa fille dans Sarbacane, et dans Dormir debout rend hommage à Daniel Balavoine, disparu trois ans auparavant.
+
+                            La chanson Rosie est une reprise en français d'une chanson de Jackson Browne qui figure sur l'album Running on Empty.
+
+                            Aux Victoires de la musique 1990, Francis Cabrel repartira avec trois récompenses : Meilleur artiste, Meilleur album et Meilleur spectacle musical de l'année 1989.
+                        </p>
                     </div>
                 </div>
             </div>
         </article>
+    {% if forloop.counter|divisibleby:3 %}<div class="clearfix"></div>{% endif %}
 {% endfor %}
