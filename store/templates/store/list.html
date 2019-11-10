@@ -1,0 +1,17 @@
+{% load static %}
+        <article>
+            <div class="row">
+                <div class="box">
+                <div class="col-lg-3"></div>
+                    <div class="col-lg-6">
+                        <header>
+                           <hr>
+                            <h2 class="intro-text text-center">
+                                {% autoescape off %}{{ message }}{% endautoescape %}
+                            </h2>
+                            <hr class="detail-separator">
+                        </header>
+                    </div>
+                </div>
+            </div>
+        </article>

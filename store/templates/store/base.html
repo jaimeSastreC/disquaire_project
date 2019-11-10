@@ -56,6 +56,9 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li>
+                            <a href="{% url 'index' %}">Index</a>
+                        </li>
+                        <li>
                             <a href="{% url 'store:listing' %}">TOUS NOS DISQUES</a>
                         </li>
                         <li>
@@ -72,10 +75,8 @@
 
     <div class="container">
         <div class="row">
-            <div class="box">
-                {% block caroussel %}
-                {% endblock %}
-            </div>
+            {% block caroussel %}
+            {% endblock %}
         </div>
 
     <section id="main">

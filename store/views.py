@@ -7,18 +7,19 @@ from .models import Artist, Album, Contact, Booking
 
 
 def index(request):
-    # filtrer attribut available, ordonner du plus récent à ancien, 12 premiers
-    albums = Album.objects.filter(available=True).order_by('-created_at')[:12]
+    # filtrer attribut available, ordonner du plus récent à ancien, 12 premiers ou '-created_at'
+    albums = Album.objects.filter(available=True).order_by('created_at')[:12]
     return render(request, 'store/index.html', locals())
 
 def listing(request):
     albums = Album.objects.filter(available=True)
-    formated_albums = ["<li>{}</li>".format(album.title) for album in albums]
+    formated_albums = ["<li style=\"list-style-type: none;\">{}</li>".format(album.title) for album in albums]
     message = """<ul>{}</ul>""".format("".join(formated_albums))
     context = {
         'albums': albums,
     }
-    return render(request, 'store/listing.html', context)
+    return render(request, 'store/listing.html', {'message': message})
+    #return HttpResponse(message)
 
 def detail(request, album_id):
     """ http://127.0.0.1:8000/store/1/
@@ -59,14 +60,13 @@ def search(request):
                 </ul>
                 """.format("</li><li>".join(albums))
 
-    title = "Résultat pour la recherche {}".format(query)
+    title = "Résultat pour la recherche: <br/><strong>{}</strong>".format(query)
     context = {
-        'albums': albums,
         'title': title,
     }
 
 
-    return render(request, 'store/search.html', context,)
+    return render(request, 'store/search.html', context)
 
 
 

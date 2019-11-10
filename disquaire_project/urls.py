@@ -27,7 +27,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     #ajout de namespace!
     url(r'^store/', include('store.urls')),
-    url(r'^$', views.index)
+    url(r'^$', views.index, name='index')
 ]
 
 #debug toolbar

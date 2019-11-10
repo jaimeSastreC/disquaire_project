@@ -1,0 +1,30 @@
+{% extends 'store/base.html' %}
+
+{% block caroussel %}
+    <div class="box">
+        <header>
+            <hr>
+                <h2 class="intro-text text-center">Tous nos disques</h2>
+            <hr class="detail-separator">
+        </header>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <article>
+            <div class="row">
+                <div class="box">
+                <div class="col-lg-3"></div>
+                    <div class="col-lg-6">
+                        <header>
+                           <hr>
+                            <h2 class="intro-text text-center">
+                                {% autoescape off %}{{ title }}{% endautoescape %}
+                            </h2>
+                            <hr class="detail-separator">
+                        </header>
+                    </div>
+                </div>
+            </div>
+        </article>
+{% endblock %}

@@ -6,7 +6,7 @@
                     <div class="col-lg-12">
                         <header>
                             <hr>
-                            {#éjout d'espace  de nom "store" pour pouvoir utiliser plusieurs fois detail#}
+                            {#éjout d'espace de nom pour pouvoir utiliser plusieurs fois detail#}
                             <a href="{% url 'store:detail' album_id=album.id %}">
                                 <h2 class="intro-text text-center">Titre de l'album
                                     <strong>{{ album.title }}</strong>
@@ -15,7 +15,9 @@
                             <hr>
                         </header>
                         <a href="{% url 'store:detail' album_id=album.id %}">
-                            <img class="img-responsive img-border img-left" src="{% static album.picture%}" alt="" >
+                            {% if album.picture %}
+                                <img class="img-responsive img-border img-left" src="{% static album.picture%}" alt="" width="300px">
+                            {% endif %}
                         </a>
                             <hr class="visible-xs">
                         <p>Sarbacane est le septième album studio de Francis Cabrel. Sorti en 1989, l'album s'est écoulé à plus de 2 000 000 d'exemplaires en France3 et a été certifié disque de diamant.
