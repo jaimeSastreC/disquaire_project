@@ -32,7 +32,8 @@ class Album(models.Model):
                                       verbose_name="Date de parution")
     available = models.BooleanField(default=True)
     title = models.CharField(max_length=128)
-    picture = models.URLField(null=True, default="store/img/Sarbacane.jpg")
+    content = models.TextField(null=True)
+    picture = models.ImageField(null=True, default="store/img/Sarbacane.jpg")
     artists = models.ManyToManyField(Artist, related_name='albums', blank=True)
 
     def __str__(self):

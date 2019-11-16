@@ -22,7 +22,6 @@ from django.conf.urls import include, url
 
 from store import views
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     #ajout de namespace!

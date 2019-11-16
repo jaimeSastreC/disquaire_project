@@ -15,9 +15,7 @@ def listing(request):
     albums = Album.objects.filter(available=True)
     formated_albums = ["<li style=\"list-style-type: none;\">{}</li>".format(album.title) for album in albums]
     message = """<ul>{}</ul>""".format("".join(formated_albums))
-    context = {
-        'albums': albums,
-    }
+    # simpler locals, here just an example with message
     return render(request, 'store/listing.html', {'message': message})
     #return HttpResponse(message)
 
@@ -25,14 +23,8 @@ def detail(request, album_id):
     """ http://127.0.0.1:8000/store/1/
     """
     album = get_object_or_404(Album, id=album_id)
-    artist_name = " ".join([artiste.name for artiste in album.artists.all()])
-    context = {
-        'album_title': album.title,
-        'artist_name': artist_name,
-        'album_id': album.id,
-        'thumbnail': album.picture,
-    }
-    return render(request, 'store/detail.html', context)
+
+    return render(request, 'store/detail.html', locals())
 
 def search(request):
     """ Requête Auteur
@@ -72,6 +64,19 @@ def search(request):
 
 
 ################################# méthodes didactiques ##############################
+
+# def detail(request, album_id):
+#     """ http://127.0.0.1:8000/store/1/
+#     """
+#     album = get_object_or_404(Album, id=album_id)
+#     artist_name = " ".join([artiste.name for artiste in album.artists.all()])
+#     context = {
+#         'album_title': album.title,
+#         'artist_name': artist_name,
+#         'album_id': album.id,
+#         'thumbnail': album.picture,
+#     }
+#     return render(request, 'store/detail.html', context)
 
 #def search(request):
     # obj = str(request.GET)
