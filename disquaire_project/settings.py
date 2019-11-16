@@ -144,8 +144,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# add for CSS and Javascript - folder static on root
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "store/static/store/"),
+)
 
-MEDIA_URL = "/media/"
+MEDIA_URL = "/store/static/"
 #MEDIA_ROOT = os.path.join(BASE_DIR, "static/img/")
 MEDIA_ROOT = os.path.join(BASE_DIR, 'store/static/store/')
 

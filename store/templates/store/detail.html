@@ -1,5 +1,4 @@
 {% extends 'store/base.html' %}
-{% load static %}
 {% block content %}
 
      <article>
@@ -18,7 +17,7 @@
                         </header>
                         <a href="{% url 'store:detail' album_id=album.id %}">
                             {% if album.picture %}
-                                <img class="img-responsive img-border img-left" src="{% static album.picture%}" alt="" width="300px">
+                                <img class="img-responsive img-border img-left" src="{{ MEDIA_URL }}{{ album.picture.url }}" alt="" width="300px">
                             {% endif %}
                         </a>
                             <hr class="visible-xs">
